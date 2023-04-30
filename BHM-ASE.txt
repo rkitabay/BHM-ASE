@@ -1,0 +1,25 @@
+model
+{
+  for (i in 1:K)
+  {
+    x[i] ~ dbin(pi[i],n[i])
+    pi[i] <- exp(theta[i])/(1+exp(theta[i]))
+  }
+  for (i in 1:(K-1))
+  {
+    for (j in (i+1):K)
+    {
+      C[i,j]=S[i,j]/tau1
+      C[j,i]=C[i,j]
+    }
+  }
+  for (i in 1:K)
+  {
+    C[i,i]=1/tau1 + 1/tau2
+    muvec[i]=mu
+  }
+  theta ~ dmnorm(muvec,inverse(C[,]))
+  mu ~ dnorm(mu0,0.01)
+  tau1 ~ dgamma(0.01,0.01)
+  tau2 ~ dgamma(0.01,0.01)
+}
