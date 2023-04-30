@@ -23,7 +23,7 @@ data
 
 
 #---------------Analysis of BHM-ASE---------------#
-#----setting of chooning parameters----
+#----setting of tuning parameters----
 c0 <- 0.99 #large value using the equation (3) in Section 2.1 
 c1 <- 0.01 #small value using the equation (3) in Section 2.1
 q01.star <- c(0.01,0.25,0.50,0.75,0.99)
